@@ -19,6 +19,14 @@ defmodule MentorappWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/auth", Mentorapp do
+    pipe_through([:browser])
+
+    get("/github", AuthController, :request)
+    get("/github/callback", AuthController, :callback)
+    post("/logout", AuthController, :delete)
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", MentorappWeb do
   #   pipe_through :api

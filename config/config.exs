@@ -20,7 +20,7 @@ config :mentorapp_web,
 # Configures the endpoint
 config :mentorapp_web, MentorappWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "eR+KlVNV1vhCE3RbVHDiCPvVJ9N5HBv2pkDs0ZJYxG/97p94oBYcABuDdArvgB04",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [view: MentorappWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: MentorappWeb.PubSub, adapter: Phoenix.PubSub.PG2]
 
@@ -31,6 +31,15 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :ueberauth, Ueberauth,
+  providers: [
+    github: {Ueberauth.Strategy.Github, [default_scope: "user:email"]}
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
