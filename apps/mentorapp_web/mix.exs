@@ -24,7 +24,7 @@ defmodule MentorappWeb.MixProject do
   def application do
     [
       mod: {MentorappWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ueberauth, :ueberauth_github]
     ]
   end
 
@@ -45,7 +45,9 @@ defmodule MentorappWeb.MixProject do
       {:gettext, "~> 0.11"},
       {:mentorapp, in_umbrella: true},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:ueberauth, "~> 0.6"},
+      {:ueberauth_github, "~> 0.7"}
     ]
   end
 
