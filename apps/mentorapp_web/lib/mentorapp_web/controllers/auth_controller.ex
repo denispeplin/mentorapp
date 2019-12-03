@@ -27,10 +27,10 @@ defmodule Mentorapp.AuthController do
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     case UserFromAuth.find_or_create(auth) do
-      {:ok, user} ->
+      {:ok, github_id} ->
         conn
         |> put_flash(:info, "Successfully authenticated.")
-        |> put_session(:current_user, user)
+        |> put_session(:github_id, github_id)
         |> configure_session(renew: true)
         |> redirect(to: "/")
 

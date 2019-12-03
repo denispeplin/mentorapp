@@ -5,9 +5,15 @@ defmodule UserFromAuth do
   require Logger
 
   alias Ueberauth.Auth
+  alias Mentorapp.User
 
   def find_or_create(%Auth{} = auth) do
-    {:ok, basic_info(auth)}
+    user =
+      auth
+      |> basic_info()
+      |> User.find_or_create()
+
+    {:ok, user.github_id}
   end
 
   defp basic_info(%{info: info} = auth) do
