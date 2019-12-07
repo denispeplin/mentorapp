@@ -35,6 +35,12 @@ defmodule Mentorapp.User do
     |> validate_required([:full_name, :github_id, :accepts_mentees])
   end
 
+  def find_by_id(nil), do: nil
+
+  def find_by_id(user_id) do
+    Repo.get(User, user_id)
+  end
+
   def find_by_github_id(nil), do: nil
 
   def find_by_github_id(github_id) do

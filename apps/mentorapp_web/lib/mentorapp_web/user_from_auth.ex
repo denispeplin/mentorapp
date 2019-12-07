@@ -13,7 +13,7 @@ defmodule UserFromAuth do
       |> basic_info()
       |> User.find_or_create()
 
-    {:ok, user.github_id}
+    {:ok, user}
   end
 
   defp basic_info(%{info: info} = auth) do
