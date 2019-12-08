@@ -24,6 +24,11 @@ config :mentorapp_web, MentorappWeb.Endpoint,
   render_errors: [view: MentorappWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: MentorappWeb.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :mentorapp_web, MentorappWeb.Endpoint,
+  live_view: [
+    signing_salt: "oRToewIgYXgQVx3XEThLg3g0rADkU0Mh"
+  ]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

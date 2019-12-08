@@ -20,6 +20,7 @@ defmodule MentorappWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: MentorappWeb
+      import Phoenix.LiveView.Controller
       import Plug.Conn
       import MentorappWeb.Gettext
       alias MentorappWeb.Router.Helpers, as: Routes
@@ -31,6 +32,17 @@ defmodule MentorappWeb do
       use Phoenix.View,
         root: "lib/mentorapp_web/templates",
         namespace: MentorappWeb
+
+      import Phoenix.LiveView,
+        only: [
+          live_render: 2,
+          live_render: 3,
+          live_link: 1,
+          live_link: 2,
+          live_component: 2,
+          live_component: 3,
+          live_component: 4
+        ]
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
@@ -47,6 +59,7 @@ defmodule MentorappWeb do
   def router do
     quote do
       use Phoenix.Router
+      import Phoenix.LiveView.Router
       import Plug.Conn
       import Phoenix.Controller
     end

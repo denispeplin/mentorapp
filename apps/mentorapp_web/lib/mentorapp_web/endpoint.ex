@@ -1,6 +1,8 @@
 defmodule MentorappWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :mentorapp_web
 
+  socket "/live", Phoenix.LiveView.Socket
+
   socket "/socket", MentorappWeb.UserSocket,
     websocket: true,
     longpoll: false
