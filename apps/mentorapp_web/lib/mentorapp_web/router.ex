@@ -14,6 +14,12 @@ defmodule MentorappWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/", MentorappLive do
+    pipe_through :browser
+
+    live "/thermostat", ThermostatLive
+  end
+
   scope "/", MentorappWeb do
     pipe_through :browser
 
