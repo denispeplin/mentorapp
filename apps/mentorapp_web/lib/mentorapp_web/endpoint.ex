@@ -1,6 +1,8 @@
 defmodule MentorappWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :mentorapp_web
 
+  socket "/live", Phoenix.LiveView.Socket
+
   socket "/socket", MentorappWeb.UserSocket,
     websocket: true,
     longpoll: false
@@ -40,6 +42,7 @@ defmodule MentorappWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_mentorapp_web_key",
+    encryption_salt: "2giUeA4YbBcnCmmW",
     signing_salt: "gXemy9Su"
 
   plug MentorappWeb.Router

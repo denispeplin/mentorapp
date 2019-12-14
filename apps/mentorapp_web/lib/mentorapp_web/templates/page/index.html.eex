@@ -33,3 +33,17 @@
     </ul>
   </article>
 </section>
+
+<%= if @current_user do %>
+  <h2>Welcome, <%= @current_user.full_name %>!</h2>
+  <img src="<%= @current_user.avatar %>" class="img-circle"/>
+  <%= form_for @conn, Routes.auth_path(@conn, :delete), fn _f -> %>
+    <%= submit "Logout", class: "btn btn-danger" %>
+  <% end %>
+  <br>
+<% else %>
+  <a class="btn btn-primary btn-lg" href="/auth/github">
+    <i class="fa fa-github"></i>
+    Sign in with GitHub
+  </a>
+<% end %>

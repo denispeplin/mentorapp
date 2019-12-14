@@ -4,9 +4,12 @@ defmodule Mentorapp.Repo.Migrations.CreateUsers do
   def change do
     create table(:users, primary_key: false) do
       add :id, :binary_id, primary_key: true
-      add :full_name, :string, null: false
-      add :github_user, :string, mull: false
-      add :telegram_url, :string, null: false
+      add :full_name, :string
+      add :github_id, :bigint, null: false
+      add :nickname, :string
+      add :description, :text
+      add :avatar, :string
+      add :telegram_url, :string
       add :forum_profile, :string
       add :other_languages, :string
       add :dev_role, :string
@@ -14,5 +17,7 @@ defmodule Mentorapp.Repo.Migrations.CreateUsers do
 
       timestamps()
     end
+
+    create index(:users, :github_id, unique: true)
   end
 end

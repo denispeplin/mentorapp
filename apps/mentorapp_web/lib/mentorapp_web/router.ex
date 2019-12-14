@@ -5,6 +5,7 @@ defmodule MentorappWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug Phoenix.LiveView.Flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -17,6 +18,14 @@ defmodule MentorappWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+  end
+
+  scope "/auth", Mentorapp do
+    pipe_through([:browser])
+
+    get("/github", AuthController, :request)
+    get("/github/callback", AuthController, :callback)
+    post("/logout", AuthController, :delete)
   end
 
   # Other scopes may use custom stacks.
