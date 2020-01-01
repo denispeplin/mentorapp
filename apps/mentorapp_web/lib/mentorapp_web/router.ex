@@ -1,5 +1,6 @@
 defmodule MentorappWeb.Router do
   use MentorappWeb, :router
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -18,6 +19,8 @@ defmodule MentorappWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    live "/user", Live.User.Edit, session: [:user_id]
   end
 
   scope "/auth", Mentorapp do

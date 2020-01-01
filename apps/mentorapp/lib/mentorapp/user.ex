@@ -61,4 +61,10 @@ defmodule Mentorapp.User do
   def find_or_create(basic_info) do
     find_by_github_id(basic_info.id) || create(basic_info)
   end
+
+  def update(user, params) do
+    user
+    |> changeset(params)
+    |> Repo.update()
+  end
 end
