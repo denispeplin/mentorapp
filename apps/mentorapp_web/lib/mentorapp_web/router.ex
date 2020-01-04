@@ -29,7 +29,8 @@ defmodule MentorappWeb.Router do
   scope "/", MentorappWeb do
     pipe_through [:browser, :check_user]
 
-    live "/user", Live.User.Edit, session: [:user_id]
+    live "/user", Live.User.Show, session: [:user_id]
+    live "/user/edit", Live.User.Edit, session: [:user_id]
   end
 
   scope "/auth", Mentorapp do

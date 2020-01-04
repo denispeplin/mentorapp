@@ -14,5 +14,7 @@
 
   <div>
     <%= submit "Save", phx_disable_with: "Saving..." %>
+    &nbsp;
+    <%= live_link "Back", to: Routes.live_path(Endpoint, Live.User.Show, user_id: @user.id), class: "btn btn-primary" %>
   </div>
 <% end %>

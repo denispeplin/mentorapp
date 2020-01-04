@@ -31,7 +31,7 @@ defmodule MentorappWeb.Live.User.Edit do
         {:stop,
          socket
          |> put_flash(:info, "Profile updated")
-         |> redirect(to: Routes.live_path(MentorappWeb.Endpoint, Live.User.Edit))}
+         |> redirect(to: Routes.live_path(MentorappWeb.Endpoint, Live.User.Show))}
 
       {:error, %Ecto.Changeset{}} ->
         {:noreply, socket}
