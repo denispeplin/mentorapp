@@ -1,8 +1,7 @@
 defmodule MentorappWeb.Live.User.Edit do
   use Phoenix.LiveView
   alias MentorappWeb.Router.Helpers, as: Routes
-  alias MentorappWeb.UserView
-  alias MentorappWeb.Live
+  alias MentorappWeb.{Endpoint, Live, UserView}
   alias Mentorapp.User
 
   def mount(session, socket) do
@@ -27,11 +26,13 @@ defmodule MentorappWeb.Live.User.Edit do
     socket.assigns.user
     |> User.update(params)
     |> case do
-      {:ok, _user} ->
+      {:ok, user} ->
+        Endpoint.broadcast!("user:updated:#{user.id}", "message", %{})
+
         {:stop,
          socket
          |> put_flash(:info, "Profile updated")
-         |> redirect(to: Routes.live_path(MentorappWeb.Endpoint, Live.User.Show))}
+         |> redirect(to: Routes.live_path(Endpoint, Live.User.Show))}
 
       {:error, %Ecto.Changeset{}} ->
         {:noreply, socket}
