@@ -50,8 +50,6 @@ defmodule MentorappWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Ecto.Changeset, only: [get_field: 2]
-
       import MentorappWeb.ErrorHelpers
       import MentorappWeb.Gettext
       alias MentorappWeb.Router.Helpers, as: Routes

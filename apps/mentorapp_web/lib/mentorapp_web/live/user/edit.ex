@@ -9,7 +9,7 @@ defmodule MentorappWeb.Live.User.Edit do
 
     changeset = user |> User.changeset(%{}) |> Map.put(:action, :insert)
 
-    {:ok, assign(socket, user: user, changeset: changeset)}
+    {:ok, assign(socket, user: user, changeset: changeset, params: %{})}
   end
 
   def render(assigns) do
@@ -19,7 +19,7 @@ defmodule MentorappWeb.Live.User.Edit do
   def handle_event("validate", %{"user" => params}, socket) do
     changeset = socket.assigns.user |> User.changeset(params) |> Map.put(:action, :insert)
 
-    {:noreply, assign(socket, changeset: changeset)}
+    {:noreply, assign(socket, changeset: changeset, params: params)}
   end
 
   def handle_event("save", %{"user" => params}, socket) do
