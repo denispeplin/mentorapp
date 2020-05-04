@@ -53,6 +53,8 @@ defmodule MentorappWeb do
       import MentorappWeb.ErrorHelpers
       import MentorappWeb.Gettext
       alias MentorappWeb.Router.Helpers, as: Routes
+      alias MentorappWeb.Live
+      alias MentorappWeb.Endpoint
     end
   end
 

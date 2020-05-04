@@ -41,6 +41,9 @@ defmodule Mentorapp.User do
     Repo.get(User, user_id)
   end
 
+  def exists?(nil), do: nil
+  def exists?(user_id), do: Repo.exists?(User, user_id: user_id)
+
   def find_by_github_id(nil), do: nil
 
   def find_by_github_id(github_id) do
@@ -60,5 +63,11 @@ defmodule Mentorapp.User do
 
   def find_or_create(basic_info) do
     find_by_github_id(basic_info.id) || create(basic_info)
+  end
+
+  def update(user, params) do
+    user
+    |> changeset(params)
+    |> Repo.update()
   end
 end

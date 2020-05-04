@@ -1,0 +1,29 @@
+<h1>Show User</h1>
+
+<ul>
+
+  <li>
+    <strong>Nickname:</strong>
+    <%= @user.nickname %>
+  </li>
+
+  <li>
+    <strong>Full name:</strong>
+    <%= @user.full_name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @user.description %>
+  </li>
+
+  <li>
+    <strong>Accepts mentees:</strong>
+    <%= @user.accepts_mentees %>
+  </li>
+
+</ul>
+
+<span><%= live_link "Edit", to: Routes.live_path(Endpoint, Live.User.Edit, user_id: @user.id) %></span>
+&nbsp;
+<span><%= link "Back", to: Routes.page_path(Endpoint, :index) %></span>
